@@ -3,6 +3,11 @@
 @import "header.css";
 @import "main.css";
 
+:root {
+  --button-primary: #fe6f0f;
+  --button-hover: rgba(254, 111, 15, 0.8);
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
     "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI",
@@ -11,7 +16,7 @@ body {
 }
 
 .media-info-msg {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -19,12 +24,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 1;
   background-color: chartreuse;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   .media-info-msg {
-    opacity: 0;
+    display: none;
   }
 }
