@@ -60,6 +60,19 @@ async def get_image(item_id):
                               SELECT image from items WHERE id = {item_id}
                               """).fetchone()[0] #특정 id에 맞는 이미지만 가져오기
     #16진법으로 된 것을 2진법으로 바꿔서 리스폰
-    return Response(content=bytes.fromhex(image_bytes))
+    return Response(content=bytes.fromhex(image_bytes), media_type = 'image/*')
+    
+@app.post('/signup') #새로운 회원가입을 시켜달라는 요청이니까 post
+def signup(id:Annotated[str,Form()], 
+           password:Annotated[str,Form()],
+           name:Annotated[str,Form()],
+           email:Annotated[str,Form()]):
+    cur.execute(f"""
+                INSERT INTO users(id,name,email,password)
+                VALUES ('{id}','{name}','{email}','{password}')
+                """) #DB에 저장
+    con.commit()
+    return '200'
+    
     
 app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
