@@ -54,7 +54,19 @@ const renderData = (data) => {
 };
 
 const fetchList = async () => {
-  const res = await fetch("/items");
+  const accessToken = window.localStorage.getItem("token"); //토큰을 가져오면 안에 있는 값을 액세스 토큰으로 가져오게 됨
+  const res = await fetch("/items", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  if (res.status === 401) {
+    alert("로그인이 필요합니다.");
+    window.location.pathname = "/login.html";
+    return;
+  }
+
   const data = await res.json();
   renderData(data); //데이터 받아옴
 };
