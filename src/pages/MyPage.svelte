@@ -1,4 +1,5 @@
 <script>
+  import { set } from "firebase/database";
   import Nav from "../components/Nav.svelte";
   import { user$ } from "../store";
 

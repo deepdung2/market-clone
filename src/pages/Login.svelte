@@ -20,6 +20,9 @@
 </script>
 
 <div>
+  {#if $user$}
+    <div>{$user$?.displayName} 로그인됨</div>
+  {/if}
   <div>로그인하기</div>
   <button class="login-btn" on:click={loginWithGoogle}>
     <img
@@ -43,6 +46,7 @@
     border-radius: 3px;
   }
   .google-img {
+    padding-right: 10px;
     width: 20px;
   }
 </style>
